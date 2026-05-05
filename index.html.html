@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Gus%20Richardson/Downloads/next25_research_tool_2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Next25 — Parliamentary Discourse Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --charcoal: #2b2b2b;
+    --charcoal-mid: #4a4a4a;
+    --charcoal-light: #7a7a7a;
+    --border: #e0e0e0;
+    --border-light: #f0f0f0;
+    --bg: #ffffff;
+    --bg-subtle: #fafafa;
+    --accent: #2b2b2b;
+    --checked-color: #a0a0a0;
+    --font: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    font-family: var(--font);
+    color: var(--charcoal);
+    background: var(--bg);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 28px 48px 0;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    gap: 16px;
+  }
+
+  .logo-wordmark {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+
+  .logo-wordmark span {
+    font-weight: 300;
+    color: var(--charcoal-light);
+  }
+
+  .header-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--charcoal-light);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── Navigation ── */
+  nav {
+    display: flex;
+    gap: 0;
+  }
+
+  .nav-tab {
+    padding: 10px 0;
+    margin-right: 32px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--charcoal-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: var(--font);
+    letter-spacing: 0;
+  }
+
+  .nav-tab:hover { color: var(--charcoal); }
+
+  .nav-tab.active {
+    color: var(--charcoal);
+    font-weight: 500;
+    border-bottom-color: var(--charcoal);
+  }
+
+  /* ── Main layout ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 52px 48px;
+  }
+
+  /* ── Section ── */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal-light);
+    margin-bottom: 36px;
+  }
+
+  /* ── Overview grid ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+
+  .overview-card {
+    background: var(--bg);
+    padding: 28px 32px;
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal-light);
+    margin-bottom: 12px;
+  }
+
+  .card-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    font-weight: 300;
+  }
+
+  .methodology-line {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--charcoal-mid);
+    border-left: 2px solid var(--charcoal);
+    padding-left: 20px;
+    font-weight: 300;
+  }
+
+  .methodology-line strong {
+    font-weight: 500;
+    color: var(--charcoal);
+  }
+
+  /* ── Subsection ── */
+  .subsection {
+    margin-bottom: 36px;
+  }
+
+  .subsection-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal-light);
+    margin-bottom: 12px;
+  }
+
+  .subsection-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--charcoal);
+    font-weight: 300;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── Checklist ── */
+  .checklist {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--charcoal);
+    transition: color 0.15s;
+  }
+
+  .checklist li:last-child { border-bottom: none; }
+
+  .checklist li.done {
+    color: var(--checked-color);
+    text-decoration: line-through;
+    text-decoration-color: var(--border);
+  }
+
+  .checklist input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    margin-top: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  .checklist input[type="checkbox"]:checked {
+    background: var(--charcoal);
+    border-color: var(--charcoal);
+  }
+
+  .checklist input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    width: 8px;
+    height: 5px;
+    border-left: 1.5px solid white;
+    border-bottom: 1.5px solid white;
+    transform: rotate(-45deg);
+  }
+
+  /* ── Decisions collapsible ── */
+  .decisions-wrapper {
+    margin-top: 8px;
+  }
+
+  .decisions-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    text-align: left;
+    font-family: var(--font);
+  }
+
+  .decisions-toggle:hover .toggle-label { color: var(--charcoal); }
+
+  .toggle-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--charcoal-light);
+    flex: 1;
+    transition: color 0.15s;
+  }
+
+  .toggle-icon {
+    font-size: 14px;
+    color: var(--charcoal-light);
+    line-height: 1;
+    transition: transform 0.2s;
+    display: inline-block;
+    font-style: normal;
+  }
+
+  .decisions-toggle.open .toggle-icon { transform: rotate(45deg); }
+
+  .decisions-body {
+    display: none;
+    padding: 20px 0 8px;
+  }
+
+  .decisions-body.open { display: block; }
+
+  .decisions-list {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .decisions-list li {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--charcoal);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .decisions-list li::before {
+    content: '—';
+    color: var(--border);
+    font-size: 12px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .decisions-list li:last-child { border-bottom: none; }
+
+  /* ── Append input ── */
+  .append-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .append-input {
+    flex: 1;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 12px;
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .append-input::placeholder { color: var(--charcoal-light); }
+  .append-input:focus { border-color: var(--charcoal); }
+
+  .append-btn {
+    font-family: var(--font);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--bg);
+    background: var(--charcoal);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+
+  .append-btn:hover { opacity: 0.75; }
+
+  /* ── Pipeline ── */
+  .pipeline-wrapper {
+    margin: 8px 0 32px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+
+  .pipeline {
+    display: flex;
+    align-items: center;
+    min-width: 620px;
+    gap: 0;
+  }
+
+  .pipeline-node {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+
+  .node-box {
+    border: 1.5px solid var(--charcoal);
+    border-radius: 4px;
+    padding: 14px 10px 12px;
+    background: var(--bg);
+    margin: 0 6px;
+  }
+
+  .node-number {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--charcoal-light);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .node-title {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .node-tool {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--charcoal-light);
+    line-height: 1.4;
+  }
+
+  .pipeline-arrow {
+    font-size: 14px;
+    color: var(--border);
+    flex-shrink: 0;
+    margin: 0 -4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── About / contacts ── */
+  .about-body {
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 48px;
+    max-width: 620px;
+  }
+
+  .contacts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    max-width: 560px;
+  }
+
+  .contact-card {
+    background: var(--bg);
+    padding: 24px 28px;
+  }
+
+  .contact-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+
+  .contact-title {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--charcoal-light);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .contact-email {
+    font-size: 12px;
+    color: var(--charcoal);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+
+  .contact-email:hover { border-color: var(--charcoal); }
+
+  /* ── Responsive ── */
+  @media (max-width: 680px) {
+    header { padding: 20px 20px 0; }
+    main { padding: 36px 20px; }
+    .overview-grid { grid-template-columns: 1fr; }
+    .contacts { grid-template-columns: 1fr; }
+    .header-top { flex-direction: column; gap: 6px; }
+    nav { overflow-x: auto; padding-bottom: 0; }
+    .nav-tab { margin-right: 20px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="logo-wordmark">Next25 <span>/ Parliamentary Discourse Research</span></div>
+    <div class="header-subtitle">Research Reference</div>
+  </div>
+  <nav>
+    <button class="nav-tab active" onclick="showSection(&#39;overview&#39;, this)">Overview</button>
+    <button class="nav-tab" onclick="showSection(&#39;phase1&#39;, this)">Phase 1 — Qualitative</button>
+    <button class="nav-tab" onclick="showSection(&#39;phase2&#39;, this)">Phase 2 — Quantitative</button>
+    <button class="nav-tab" onclick="showSection(&#39;about&#39;, this)">About</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- OVERVIEW -->
+  <div id="section-overview" class="section active">
+    <div class="section-title">Overview</div>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="card-label">Research Aims</div>
+        <div class="card-body">To understand more deeply the impact of our programs. Specifically, what are the most significant changes from undertaking a Next25 program for alumni? And do these changes produce observable changes to parliamentary discourse?</div>
+      </div>
+      <div class="overview-card">
+        <div class="card-label">Context</div>
+        <div class="card-body">Given that a large portion of our alumni are from the NSW parliament, the focus remains on the NSW parliament. However, once we have a baseline in NSW, there may be a possibility to investigate other parliaments.</div>
+      </div>
+    </div>
+    <div class="methodology-line">
+      <strong>Overall Methodology:</strong> Exploratory Sequential Mixed Methods Design (Creswell &amp; Plano Clark, 2018) — an initial qualitative phase that informs and shapes a subsequent quantitative phase.
+    </div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div id="section-phase1" class="section">
+    <div class="section-title">Phase 1 — Qualitative Exploration</div>
+
+    <div class="subsection">
+      <div class="subsection-label">Methodology</div>
+      <div class="subsection-body">Semi-structured interviews with a sample of NSW program alumni.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Objective</div>
+      <div class="subsection-body">These interviews will explore how participants perceive the program's influence on their parliamentary practice, the language and behaviours they associate with change, and the contexts in which those changes are most apparent.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Resources</div>
+      <ul class="checklist" id="phase1-resources-list"><li><input type="checkbox"><span>Semi-structured interview template</span></li><li><input type="checkbox"><span>Combined MSC and Leverage Point Assessment Tool</span></li></ul>
+      <div class="append-row">
+        <input class="append-input" id="phase1-resources-input" type="text" placeholder="Add a resource…">
+        <button class="append-btn" onclick="appendResource(&#39;phase1&#39;)">Add</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="decisions-wrapper">
+      <button class="decisions-toggle" id="phase1-toggle" onclick="toggleDecisions(&#39;phase1&#39;)">
+        <span class="toggle-label">Decisions to be made</span>
+        <i class="toggle-icon">+</i>
+      </button>
+      <div class="decisions-body" id="phase1-decisions-body">
+        <ul class="decisions-list" id="phase1-decisions-list"><li>How many participants should we interview?</li><li>Should we consider our interview pool being descriptively representative of NSW parliament?</li><li>Who should do the interviews, and should it only be one person?</li><li>Face to face or online?</li><li>Distinction needed between Leadership and Transforming Parliament for Women program?</li></ul>
+        <div class="append-row">
+          <input class="append-input" id="phase1-decisions-input" type="text" placeholder="Add a decision…">
+          <button class="append-btn" onclick="appendDecision(&#39;phase1&#39;)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div id="section-phase2" class="section">
+    <div class="section-title">Phase 2 — Quantitative Analysis</div>
+
+    <div class="subsection">
+      <div class="subsection-label">Methodology</div>
+      <div class="subsection-body">Drawing on the qualitative findings, apply computational text analysis (AI/NLP) to Hansard records to examine discourse patterns across qualitative target domains.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-label">Resources / Inputs</div>
+      <ul class="checklist" id="phase2-resources-list"><li><input type="checkbox"><span>NSW Parliament Hansard API</span></li><li><input type="checkbox"><span>Coding scheme / framework</span></li><li><input type="checkbox"><span>Codebook</span></li><li><input type="checkbox"><span>Coded transcript dataset with metadata and confounding variables</span></li></ul>
+      <div class="append-row">
+        <input class="append-input" id="phase2-resources-input" type="text" placeholder="Add a resource…">
+        <button class="append-btn" onclick="appendResource(&#39;phase2&#39;)">Add</button>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="subsection">
+      <div class="subsection-label">Proposed Workflow</div>
+      <div class="pipeline-wrapper">
+        <div class="pipeline">
+          <div class="pipeline-node">
+            <div class="node-box">
+              <div class="node-number">01</div>
+              <div class="node-title">Data Acquisition</div>
+              <div class="node-tool">Hansard API / TheyWorkForYou / ParlParse</div>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-node">
+            <div class="node-box">
+              <div class="node-number">02</div>
+              <div class="node-title">Framework Development</div>
+              <div class="node-tool">NVivo or MAXQDA</div>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-node">
+            <div class="node-box">
+              <div class="node-number">03</div>
+              <div class="node-title">Large-Scale Coding</div>
+              <div class="node-tool">Claude / GPT API</div>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-node">
+            <div class="node-box">
+              <div class="node-number">04</div>
+              <div class="node-title">Validation &amp; Reliability</div>
+              <div class="node-tool">MAXQDA or Dedoose</div>
+            </div>
+          </div>
+          <div class="pipeline-arrow">→</div>
+          <div class="pipeline-node">
+            <div class="node-box">
+              <div class="node-number">05</div>
+              <div class="node-title">Analysis &amp; Reporting</div>
+              <div class="node-tool">R or Python</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="decisions-wrapper">
+      <button class="decisions-toggle" id="phase2-toggle" onclick="toggleDecisions(&#39;phase2&#39;)">
+        <span class="toggle-label">Decisions to be made</span>
+        <i class="toggle-icon">+</i>
+      </button>
+      <div class="decisions-body" id="phase2-decisions-body">
+        <ul class="decisions-list" id="phase2-decisions-list"><li>Most efficient workflow and tools?</li><li>How should we determine confounding variables?</li><li>Do we want to extend the analysis to include a policy/legislation linkage?</li><li>How should we present findings in a way that aligns with our MEL plan?</li></ul>
+        <div class="append-row">
+          <input class="append-input" id="phase2-decisions-input" type="text" placeholder="Add a decision…">
+          <button class="append-btn" onclick="appendDecision(&#39;phase2&#39;)">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div id="section-about" class="section">
+    <div class="section-title">About Next25</div>
+    <div class="about-body">
+      Next25 is an Australian think-and-do tank focused on ensuring Australia has what it needs to make the future it wants. Founded in 2013, our Leadership programs have worked with parliamentarians across all Australian jurisdictions, aiming to empower politicians to lead with integrity and confidence in their values and to understand their power as individuals to improve the system.
+    </div>
+    <div class="subsection-label" style="margin-bottom: 16px;">Contacts</div>
+    <div class="contacts">
+      <div class="contact-card">
+        <div class="contact-name">Gus Richardson</div>
+        <div class="contact-title">Senior Research &amp; Programs Officer</div>
+        <a class="contact-email" href="mailto:gus@next25.org.au">gus@next25.org.au</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-name">Chloë Spackman</div>
+        <div class="contact-title">CEO</div>
+        <a class="contact-email" href="mailto:chloe@next25.org.au">chloe@next25.org.au</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  // ── Default data ──
+  const DEFAULTS = {
+    'phase1-resources': [
+      { text: 'Semi-structured interview template', checked: false },
+      { text: 'Combined MSC and Leverage Point Assessment Tool', checked: false }
+    ],
+    'phase1-decisions': [
+      'How many participants should we interview?',
+      'Should we consider our interview pool being descriptively representative of NSW parliament?',
+      'Who should do the interviews, and should it only be one person?',
+      'Face to face or online?',
+      'Distinction needed between Leadership and Transforming Parliament for Women program?'
+    ],
+    'phase2-resources': [
+      { text: 'NSW Parliament Hansard API', checked: false },
+      { text: 'Coding scheme / framework', checked: false },
+      { text: 'Codebook', checked: false },
+      { text: 'Coded transcript dataset with metadata and confounding variables', checked: false }
+    ],
+    'phase2-decisions': [
+      'Most efficient workflow and tools?',
+      'How should we determine confounding variables?',
+      'Do we want to extend the analysis to include a policy/legislation linkage?',
+      'How should we present findings in a way that aligns with our MEL plan?'
+    ]
+  };
+
+  // ── Storage helpers (localStorage) ──
+  function load(key) {
+    try {
+      const val = localStorage.getItem('next25_' + key);
+      return val ? JSON.parse(val) : null;
+    } catch { return null; }
+  }
+
+  function save(key, value) {
+    try { localStorage.setItem('next25_' + key, JSON.stringify(value)); } catch {}
+  }
+
+  // ── Render resources ──
+  function renderResources(phase, items) {
+    const list = document.getElementById(`${phase}-resources-list`);
+    list.innerHTML = '';
+    items.forEach((item, i) => {
+      const li = document.createElement('li');
+      if (item.checked) li.classList.add('done');
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = item.checked;
+      cb.addEventListener('change', () => {
+        const data = load(`${phase}-resources`) || DEFAULTS[`${phase}-resources`];
+        data[i].checked = cb.checked;
+        save(`${phase}-resources`, data);
+        li.classList.toggle('done', cb.checked);
+      });
+
+      const span = document.createElement('span');
+      span.textContent = item.text;
+
+      li.appendChild(cb);
+      li.appendChild(span);
+      list.appendChild(li);
+    });
+  }
+
+  // ── Render decisions ──
+  function renderDecisions(phase, items) {
+    const list = document.getElementById(`${phase}-decisions-list`);
+    list.innerHTML = '';
+    items.forEach(text => {
+      const li = document.createElement('li');
+      li.textContent = text;
+      list.appendChild(li);
+    });
+  }
+
+  // ── Append resource ──
+  window.appendResource = function(phase) {
+    const input = document.getElementById(`${phase}-resources-input`);
+    const text = input.value.trim();
+    if (!text) return;
+    const data = load(`${phase}-resources`) || [...DEFAULTS[`${phase}-resources`]];
+    data.push({ text, checked: false });
+    save(`${phase}-resources`, data);
+    renderResources(phase, data);
+    input.value = '';
+  };
+
+  // ── Append decision ──
+  window.appendDecision = function(phase) {
+    const input = document.getElementById(`${phase}-decisions-input`);
+    const text = input.value.trim();
+    if (!text) return;
+    const data = load(`${phase}-decisions`) || [...DEFAULTS[`${phase}-decisions`]];
+    data.push(text);
+    save(`${phase}-decisions`, data);
+    renderDecisions(phase, data);
+    input.value = '';
+  };
+
+  // ── Enter key on inputs ──
+  ['phase1-resources-input', 'phase2-resources-input'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') { const phase = id.split('-')[0]; appendResource(phase); }
+    });
+  });
+  ['phase1-decisions-input', 'phase2-decisions-input'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') { const phase = id.split('-')[0]; appendDecision(phase); }
+    });
+  });
+
+  // ── Toggle decisions ──
+  window.toggleDecisions = function(phase) {
+    const toggle = document.getElementById(`${phase}-toggle`);
+    const body = document.getElementById(`${phase}-decisions-body`);
+    toggle.classList.toggle('open');
+    body.classList.toggle('open');
+  };
+
+  // ── Nav ──
+  window.showSection = function(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(`section-${id}`).classList.add('active');
+    btn.classList.add('active');
+  };
+
+  // ── Init ──
+  function init() {
+    for (const phase of ['phase1', 'phase2']) {
+      const resources = load(`${phase}-resources`) || DEFAULTS[`${phase}-resources`];
+      renderResources(phase, resources);
+      const decisions = load(`${phase}-decisions`) || DEFAULTS[`${phase}-decisions`];
+      renderDecisions(phase, decisions);
+    }
+  }
+
+  init();
+</script>
+
+
+</body></html>
